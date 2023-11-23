@@ -1,0 +1,34 @@
+% Facts
+location(chicago, illinois).
+location(new_york, new_york).
+location(los_angeles, california).
+
+stays(john, chicago).
+stays(amy, new_york).
+stays(michael, los_angeles).
+
+% Queries
+% (i) List of persons, state, and city
+list_persons_state_city :-
+    stays(Person, City),
+    location(City, State),
+    write('Person: '), write(Person),
+    write(', City: '), write(City),
+    write(', State: '), write(State), nl,
+    fail. % To force backtracking for all solutions
+
+% (ii) Given person, find the state in which he is staying
+find_state(Person) :-
+    stays(Person, City),
+    location(City, State),
+    write(Person), write(' is staying in '), write(State), nl.
+
+% Example Usage
+% Query: list_persons_state_city.
+% Expected Output:
+% Person: john, City: chicago, State: illinois
+% Person: amy, City: new_york, State: new_york
+% Person: michael, City: los_angeles, State: california
+
+% Query: find_state(john).
+% Expected Output: john is staying in illinois

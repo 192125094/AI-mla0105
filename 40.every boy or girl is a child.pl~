@@ -1,0 +1,8 @@
+child(X) :- boy(X) ; girl(X).
+has_toy(X, doll) :- girl(X).
+has_toy(X, train) :- child(X), \+ boy(X).
+has_toy(X, lump_of_coal) :- child(X), \+ has_good_behavior(X).
+
+boy(jack).
+
+has_good_behavior(jack).

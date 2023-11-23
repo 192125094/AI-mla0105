@@ -1,0 +1,16 @@
+dob(john, '1990-05-15').
+dob(jane, '1985-12-10').
+dob(bob, '1995-08-20').
+dob(alice, '1980-03-25').
+dob(charlie, '1992-11-30').
+
+
+age(Person, Age) :-
+    dob(Person, Dob),
+    get_time(Today),
+    format_time(atom(Format), '%Y-%m-%d', Today),
+    date_time_stamp(date(Year, Month, Day, 0, 0, 0, _, _, _), Today),
+    date_time_stamp(date(YearDob, MonthDob, DayDob, _, _, _, _, _, _), Dob),
+    Age is Year - YearDob - (if(Month < MonthDob ; (Month == MonthDob, Day < DayDob)) then 1 else 0).
+
+

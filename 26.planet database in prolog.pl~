@@ -1,0 +1,18 @@
+% Facts about planets
+planet(mercury, distance_sun(0.39), mass_earth(0.055)).
+planet(saturn, orbital_period(29.46), day_length(10.66)).
+planet(venus, distance_sun(0.72), mass_earth(0.815)).
+planet(jupiter, distance_sun(5.20), mass_earth(317.8)).
+planet(earth, distance_sun(1.00), mass_earth(1.0)).
+
+% Rule to find the distance between two planets
+distance_between(X, Y, Distance) :-
+    planet(X, distance_sun(XDistance), _),
+    planet(Y, distance_sun(YDistance), _),
+    Distance is abs(XDistance - YDistance).
+
+% Query to find planets closer to the Sun than Earth
+closer_to_sun_than_earth(Planet) :-
+    planet(Planet, distance_sun(Distance), _),
+    planet(earth, earth_distance),
+    Distance < earth_distance.

@@ -1,0 +1,31 @@
+
+place_queens(N, Queens) :-
+    range(1, N, Rows),
+    permutation(Rows, Queens),
+    no_conflicts(Queens).
+
+no_conflicts([]).
+no_conflicts([Q|Queens]) :-
+    no_attack(Q, Queens, 1),
+    no_conflicts(Queens).
+
+no_attack(_, [], _).
+no_attack(Q, [Q2|Queens], ColDiff) :-
+    Q2 - Q =\= ColDiff,
+    Q - Q2 =\= ColDiff,
+    NewColDiff is ColDiff + 1,
+    no_attack(Q, Queens, NewColDiff).
+
+range(M, N, [M|L]) :-
+    M < N,
+    NextM is M + 1,
+    range(NextM, N, L).
+range(N, N, [N]).
+
+display_board(Queens) :-
+    length(Queens, N),
+    forall(member(Q, Queens),
+           (forall(between(1, N, Col),
+                   (Col =:= Q -> write(' Q '); write(' . '))),
+            nl)).
+

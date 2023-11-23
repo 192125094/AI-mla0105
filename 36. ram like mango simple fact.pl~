@@ -1,0 +1,5 @@
+likes(ram, mango).
+isGirl(seema).
+likes(bill, cindy).
+isColor(rose, red).
+owns(john, gold).

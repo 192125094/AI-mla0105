@@ -1,0 +1,11 @@
+% Base case: Sum of integers from 1 to 0 is 0.
+sum_up_to_n(0, 0).
+
+% Recursive case: Sum of integers from 1 to n is N plus the sum of integers from 1 to (n-1).
+sum_up_to_n(N, Sum) :-
+    N > 0,                  % Ensure N is a positive integer
+    Prev is N - 1,          % Calculate (n-1)
+    sum_up_to_n(Prev, PrevSum),  % Recursive call to get sum of integers from 1 to (n-1)
+    Sum is N + PrevSum.     % Calculate sum of integers from 1 to n
+
+
